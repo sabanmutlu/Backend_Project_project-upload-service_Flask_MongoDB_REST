@@ -1,0 +1,145 @@
+{% extends 'base.html'%} {% block title %} Edit Project {% endblock %} {% block
+    content %}
+    <div class="container mt-5 mb-5 px-10 ">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form method="POST" action="/project/{{ project['project_id'] }}">
+                    <!-- Project ID input -->
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label class="form-label" for="formId">Project ID</label>
+                            </div>
+                            <div class="col-sm-5">
+                                <input 
+                                    type="number" 
+                                    min="0" 
+                                    value="{{ project['project_id'] }}"
+                                    id="formId" 
+                                    name="project_id" 
+                                    class="form-control" 
+                                    required
+                                />
+                            </div>
+                            <div class="col-sm-5">
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Name input -->
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label class="form-label" for="formName">Project Name</label>
+                            </div>
+                            <div class="col-sm-5">
+                                <input 
+                                    type="text" 
+                                    id="formName" 
+                                    name="project_name" 
+                                    class="form-control" 
+                                    value="{{ project['project_name'] }}"
+                                    required
+                                />
+                            </div>
+                            <div class="col-sm-5">
+                                <small id="exPrjN" class="form-text text-muted">Ex. Digitalisation of control</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Company Name input -->
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label class="form-label" for="formCompany">Company Name</label>
+                            </div>
+                            <div class="col-sm-5">
+                                <input 
+                                    type="text" 
+                                    id="formCompany" 
+                                    name="company_name" 
+                                    class="form-control" 
+                                    value="{{ project['company_name'] }}"
+                                    required
+                                />
+                            </div>
+                            <div class="col-sm-5">
+                                <small id="exCmpN" class="form-text text-muted">Ex. Inspares GmbH</small>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Creation Date input --> <!-- data-provide="datepicker" -->
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label class="form-label" for="formCreationDate">Creation Date</label>
+                            </div>
+                            <div class="col-sm-5">
+                                <input 
+                                    type="date" 
+                                    id="formCreationDate" 
+                                    name="creation_date" 
+                                    class="form-control" 
+                                    value="{{ project['creation_date'].strftime('%d.%m.%Y') }}"
+                                />
+                            </div>
+                            <div class="col-sm-5">
+                                <small id="exCrtD" class="form-text text-muted">Ex. 31.12.2022</small>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Budget input -->
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label class="form-label" for="formBudget">Budget</label>
+                            </div>
+                            <div class="col-sm-5">
+                                <input 
+                                    type="number" 
+                                    min="0" 
+                                    step="0.01" 
+                                    data-number-to-fixed="2" 
+                                    data-number-stepfactor="100" 
+                                    class="form-control currency" 
+                                    id="formBudget" 
+                                    name="budget" 
+                                    value="{{ project['budget'] }}"
+                                    required 
+                                />
+                            </div>
+                            <div class="col-sm-5">
+                                <small id="exBdgA" class="form-text text-muted">Ex. 999.00</small>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Comments input -->
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label class="form-label" for="formComment">Comments</label>
+                            </div>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" id="formComment" name="comments" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Submit button -->
+                    <div class="row">
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-primary btn-block mb-4">Save</button>
+                        </div>
+                        <div class="col-sm-4"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

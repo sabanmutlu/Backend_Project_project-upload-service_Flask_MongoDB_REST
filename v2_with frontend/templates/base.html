@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- <link rel="icon" type="image/ico" href="/project/favicon.ico"> -->
+		<link rel="shortcut icon" href="/favicon.ico">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        
+        <!-- Popper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        
+        <!-- Latest compiled Bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+		
+		<script> 
+			
+			function makeDELETErequest(prj_id) {
+				var url = '/project/' + prj_id
+				$.ajax({
+					url: url,
+					type: 'DELETE',
+					success: function (result) {
+						$("#btn_" + prj_id).html("DELETED").prop('disabled', true);
+						$("#edt_" + prj_id).hide()
+					}
+				});
+			}
+		</script>
+
+		<title>{% block title%} {% endblock %}</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="#">Projects Upload Service</a>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mx-auto">
+					<li class="nav-item {{ 'active' if homeIsActive == True }}">
+						<a class="nav-link" href="/project">Home</a>
+					</li>
+					<li class="nav-item {{ 'active' if addProjectIsActive == True }}">
+						<a class="nav-link" href="/project/add">Add Project</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		{% block content %} {% endblock %}
+		<footer>
+			<hr />
+			<p class="text-center">Project Upload Service</p>
+		</footer>
+	</body>
+</html>

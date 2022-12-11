@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flask - Project Upload Service</title>
+    <style>
+        .prj {
+            padding: 20px;
+            margin: 10px;
+            background-color: #eee;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $( document ).ready(function() {
+
+            //$("#formId").attr("value", '{{ current_id + 1}}');
+        });
+
+        $('.datepicker').datepicker({
+            format: 'dd.mm.yyyy',
+            startDate: '-3d'
+        });
+    </script>
+</head>
+<body>
+    <h1>Flask - Project Upload Service - Project ID = {{ project_id }}</h1>
+    <hr>
+    <div class="container pt-3 my-3 bg-dark text-white">
+        <form method="post">
+
+            <!-- Project ID input -->
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="form-label" for="formId">Project ID</label>
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="number" min="0" id="formId" name="project_id" class="form-control" placeholder="1"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Name input -->
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="form-label" for="formName">Project Name</label>
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="text" id="formName" name="project_name" class="form-control" placeholder="Digitalisation of product control"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company Name input -->
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="form-label" for="formCompany">Company Name</label>
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="text" id="formCompany" name="company_name" class="form-control" placeholder="Inspares GmbH"/>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Creation Date input -->
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="form-label" for="formCreationDate">Creation Date</label>
+                    </div>
+                    <div class="col-sm-5">
+                        <input data-provide="datepicker" type="date" id="formCreationDate" name="creation_date" class="form-control" placeholder="31.12.2021"/>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Budget input -->
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="form-label" for="formBudget">Budget</label>
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="number" min="0" step="0.01" data-number-to-fixed="2" 
+                            data-number-stepfactor="100" class="form-control currency" id="formBudget" name="budget" placeholder="999.99" />
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Comments input -->
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="form-label" for="formComment">Comments</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="formComment" name="comments" rows="4"></textarea>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Submit button -->
+            <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+                </div>
+                <div class="col-sm-4"></div>
+            </div>
+        </form>
+        <hr>
+        {% for prj in projects %}
+            <div class="project">
+                <p>{{ prj['project_name'] }} <i>({{ prj['company_name']}})</i></p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
